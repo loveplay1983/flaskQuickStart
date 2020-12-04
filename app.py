@@ -44,12 +44,8 @@ class Todo(db.Model):
         return '<Task   %r>' % self.id
 
 
-
-
-
 # Url configurations
 @app.route('/', methods=['POST', 'GET'])
-
 def index():
     if request.method == 'POST':
         task_content = request.form['post_content_name']
@@ -64,7 +60,39 @@ def index():
             return 'Error occurred while adding the new task'
     else:
         tasks = Todo.query.order_by(Todo.date_created).all()
+        # first tasks is the index.html jinjia2 variable, the second tasks is the tasks variable in this func
         return render_template('index.html', tasks=tasks)
+
+@app.route('/delete/<int:id>')
+def delete(id): 
+    task_to_delete = Todo.query.get_or_404(id)
+
+    try:
+        db.session.delete(task_to_delete)
+        db.session.commit()
+        return redirect('/')
+
+    except:
+        return 'There is a problem to deleteing that task'
+
+
+@app.route('/update/<int:id>', methods=['POST', 'GET'])
+def update(id):
+    task = Todo.query.get_or_404(id)
+    
+    if request.method == 'POST':
+        task.content = request.form['content']
+
+        try:
+            db.session.commit()
+            return redirect('/')
+        except:
+            return 'There was an problem to update the data'
+    else:
+        # task=task  (first task is the template update.html task var, the second task is the task var in this func)
+        return render_template('update.html', task=task)
+
+
 
 
 # Main
