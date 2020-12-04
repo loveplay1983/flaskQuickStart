@@ -16,6 +16,7 @@
     * [What is gunicorn and how it works](https://vsupalov.com/what-is-gunicorn/)
   * https://www.heroku.com/
 
-* Diff web server and application nweb
-  https://www.educative.io/edpresso/web-server-vs-application-server#:~:text=A%20web%20server%20accepts%20and,clients%2C%20which%20generates%20dynamic%20content.    
+* Diff web server and application nweb     
+  https://www.educative.io/edpresso/web-server-vs-application-server#:~:text=A%20web%20server%20accepts%20and,clients%2C%20which%20generates%20dynamic%20content.   
+  
 
