@@ -2,10 +2,54 @@
 
 
 {% block head %}
-<h1>head</h1>
+<title>Task Master</title>
 {% endblock %}
 
 
 {% block body %}
-<h1>body</h1>
+
+<div class='content'>
+    <h1>Task List</h1>
+    <table>
+        <!-- <tr>
+            <th>Task</th>
+            <th>HowTo</th>
+            <th>Deadline</th>
+        </tr>
+        <tr>
+            <td>Deep Learning</td>
+            <td>Math(Linear Algebra, Calculus, Statistics, etc...)</td>
+            <td>20210130</td>
+        </tr>
+        <tr>
+            <td>Ukulele</td>
+            <td>Elementary music notation, figer picking, etc...</td>
+            <td>Lifetime</td>
+        </tr>
+        <tr>
+            <td>Philosophy</td>
+            <td>Bunch of reading, thinking, writing(sometimes), etc...</td>
+            <td>Lifetime</td>
+        </tr> -->
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.content }}</td>
+            <td>
+                <a href="">Delete</a><br>
+                <a href="">Update</a>
+            </td>
+            <td>{{ task.date_created.date() }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <br>
+    <!-- update data -->
+    <form action="/" method="POST">
+        <input type="text" name='post_content_name' id="post_content_id">
+        <input type="submit" value="Add Task">
+    </form>
+</div> 
+
 {% endblock %}
